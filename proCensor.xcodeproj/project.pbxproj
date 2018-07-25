@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		26645A6D2107D9380004D3F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26645A6C2107D9380004D3F7 /* AppDelegate.swift */; };
-		26645A6F2107D9380004D3F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26645A6E2107D9380004D3F7 /* ViewController.swift */; };
-		26645A722107D9380004D3F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26645A702107D9380004D3F7 /* Main.storyboard */; };
 		26645A742107D93A0004D3F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26645A732107D93A0004D3F7 /* Assets.xcassets */; };
 		26645A772107D93A0004D3F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26645A752107D93A0004D3F7 /* LaunchScreen.storyboard */; };
+		26645A832107EDBC0004D3F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26645A822107EDBC0004D3F7 /* ViewController.swift */; };
+		267F25862107F00B00174A37 /* CameraMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F25852107F00B00174A37 /* CameraMainView.swift */; };
+		267F2588210810A100174A37 /* PreviewPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F2587210810A100174A37 /* PreviewPhotoVC.swift */; };
+		267F258A210810C200174A37 /* PreviewPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F2589210810C200174A37 /* PreviewPhotoView.swift */; };
+		26E1159C2108E4270024E6DF /* CameraVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E1159B2108E4270024E6DF /* CameraVideoViewController.swift */; };
+		FEFD37D451CB0EEC3C8EDEC8 /* Pods_proCensor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4FECFC900F31E11C9833F6 /* Pods_proCensor.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B0CE222BFEC87910BACD3E3 /* Pods-proCensor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proCensor.release.xcconfig"; path = "Pods/Target Support Files/Pods-proCensor/Pods-proCensor.release.xcconfig"; sourceTree = "<group>"; };
 		26645A692107D9380004D3F7 /* proCensor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proCensor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26645A6C2107D9380004D3F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		26645A6E2107D9380004D3F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		26645A712107D9380004D3F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		26645A732107D93A0004D3F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26645A762107D93A0004D3F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26645A782107D93A0004D3F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26645A822107EDBC0004D3F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		267F25852107F00B00174A37 /* CameraMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraMainView.swift; sourceTree = "<group>"; };
+		267F2587210810A100174A37 /* PreviewPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoVC.swift; sourceTree = "<group>"; };
+		267F2589210810C200174A37 /* PreviewPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoView.swift; sourceTree = "<group>"; };
+		26E1159B2108E4270024E6DF /* CameraVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVideoViewController.swift; sourceTree = "<group>"; };
+		AAF15436C9D29943CE77FA1D /* Pods-proCensor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proCensor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-proCensor/Pods-proCensor.debug.xcconfig"; sourceTree = "<group>"; };
+		CD4FECFC900F31E11C9833F6 /* Pods_proCensor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proCensor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEFD37D451CB0EEC3C8EDEC8 /* Pods_proCensor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09580019CD23A61A27C7E984 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AAF15436C9D29943CE77FA1D /* Pods-proCensor.debug.xcconfig */,
+				1B0CE222BFEC87910BACD3E3 /* Pods-proCensor.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		26645A602107D9380004D3F7 = {
 			isa = PBXGroup;
 			children = (
 				26645A6B2107D9380004D3F7 /* proCensor */,
 				26645A6A2107D9380004D3F7 /* Products */,
+				09580019CD23A61A27C7E984 /* Pods */,
+				969EC87F2F0C04CA3B7E4C78 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +76,41 @@
 		26645A6B2107D9380004D3F7 /* proCensor */ = {
 			isa = PBXGroup;
 			children = (
+				267F25842107EFD100174A37 /* View */,
+				267F25832107EFB600174A37 /* Controller */,
 				26645A6C2107D9380004D3F7 /* AppDelegate.swift */,
-				26645A6E2107D9380004D3F7 /* ViewController.swift */,
-				26645A702107D9380004D3F7 /* Main.storyboard */,
 				26645A732107D93A0004D3F7 /* Assets.xcassets */,
 				26645A752107D93A0004D3F7 /* LaunchScreen.storyboard */,
 				26645A782107D93A0004D3F7 /* Info.plist */,
 			);
 			path = proCensor;
+			sourceTree = "<group>";
+		};
+		267F25832107EFB600174A37 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				26645A822107EDBC0004D3F7 /* ViewController.swift */,
+				267F2587210810A100174A37 /* PreviewPhotoVC.swift */,
+				26E1159B2108E4270024E6DF /* CameraVideoViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		267F25842107EFD100174A37 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				267F25852107F00B00174A37 /* CameraMainView.swift */,
+				267F2589210810C200174A37 /* PreviewPhotoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		969EC87F2F0C04CA3B7E4C78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD4FECFC900F31E11C9833F6 /* Pods_proCensor.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +120,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26645A7B2107D93A0004D3F7 /* Build configuration list for PBXNativeTarget "proCensor" */;
 			buildPhases = (
+				242E2844645AAEDB3912A1B3 /* [CP] Check Pods Manifest.lock */,
 				26645A652107D9380004D3F7 /* Sources */,
 				26645A662107D9380004D3F7 /* Frameworks */,
 				26645A672107D9380004D3F7 /* Resources */,
+				EF5A18FC8B6FBBF1063A401F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,33 +175,67 @@
 			files = (
 				26645A772107D93A0004D3F7 /* LaunchScreen.storyboard in Resources */,
 				26645A742107D93A0004D3F7 /* Assets.xcassets in Resources */,
-				26645A722107D9380004D3F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		242E2844645AAEDB3912A1B3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-proCensor-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF5A18FC8B6FBBF1063A401F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-proCensor/Pods-proCensor-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-proCensor/Pods-proCensor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		26645A652107D9380004D3F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26645A6F2107D9380004D3F7 /* ViewController.swift in Sources */,
+				267F25862107F00B00174A37 /* CameraMainView.swift in Sources */,
+				26E1159C2108E4270024E6DF /* CameraVideoViewController.swift in Sources */,
+				26645A832107EDBC0004D3F7 /* ViewController.swift in Sources */,
 				26645A6D2107D9380004D3F7 /* AppDelegate.swift in Sources */,
+				267F2588210810A100174A37 /* PreviewPhotoVC.swift in Sources */,
+				267F258A210810C200174A37 /* PreviewPhotoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		26645A702107D9380004D3F7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				26645A712107D9380004D3F7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		26645A752107D93A0004D3F7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -278,10 +363,13 @@
 		};
 		26645A7C2107D93A0004D3F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAF15436C9D29943CE77FA1D /* Pods-proCensor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y979V2DJTF;
 				INFOPLIST_FILE = proCensor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -295,10 +383,13 @@
 		};
 		26645A7D2107D93A0004D3F7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B0CE222BFEC87910BACD3E3 /* Pods-proCensor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y979V2DJTF;
 				INFOPLIST_FILE = proCensor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

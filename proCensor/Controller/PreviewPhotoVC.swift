@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PreviewPhotoVC.swift
 //  proCensor
 //
 //  Created by Vikentor Pierre on 7/24/18.
@@ -8,18 +8,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PreviewPhotoVC: UIViewController {
+    
+    let previewView: PreviewPhotoView = PreviewPhotoView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    
+    
+    
+    override func loadView() {
+        super.loadView()
+        self.view = previewView
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
 }
-
