@@ -12,30 +12,58 @@ import AVFoundation
 class ViewController: UIViewController {
     
     
-    let cameraController = CameraVideoViewController()
+    var myCamera = CameraVideoViewController()
     
     let mainCameraView: CameraMainView = CameraMainView()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCameraController()
-    }
-    override func loadView() {
-        super.loadView()
-        self.view = mainCameraView
-    }
-    
-    
-    func configureCameraController() {
-        cameraController.prepare {(error) in
-            if let error = error {
-                print(error)
-            }
+        view.backgroundColor = .black
+        print("print name")
+        if (myCamera.setupCaptureSession()){
+            myCamera.setupPreview(onview: self.view)
+            myCamera.beginCaptureSession()
             
-            try? self.cameraController.displayPreview(onview: self.view)
         }
+
+        
+//        let toggle: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toggleCamera))
+//        toggle.numberOfTapsRequired = 2
+        
+//        view.addGestureRecognizer(toggle)
     }
+    
+    
+    
+    
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        cameraController.startSession()
+//    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(true)
+//        cameraController.stopSession()
+//    }
+//
+//    override func loadView() {
+//        super.loadView()
+//        self.view = mainCameraView
+//    }
+//
+//
+//    func configureCameraController() {
+//        cameraController.prepare {(error) in
+//            if let error = error {
+//                print(error)
+//            }
+//
+//            try? self.cameraController.displayPreview(onview: self.view)
+//        }
+//    }
+    
+
     
     
     override var prefersStatusBarHidden: Bool {

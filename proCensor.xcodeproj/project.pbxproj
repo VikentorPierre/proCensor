@@ -15,6 +15,8 @@
 		267F2588210810A100174A37 /* PreviewPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F2587210810A100174A37 /* PreviewPhotoVC.swift */; };
 		267F258A210810C200174A37 /* PreviewPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267F2589210810C200174A37 /* PreviewPhotoView.swift */; };
 		26E1159C2108E4270024E6DF /* CameraVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E1159B2108E4270024E6DF /* CameraVideoViewController.swift */; };
+		26F29CCA2109A1DD0072D311 /* VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F29CC82109A1DD0072D311 /* VC.swift */; };
+		26F29CCB2109A1DD0072D311 /* VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26F29CC92109A1DD0072D311 /* VC.xib */; };
 		FEFD37D451CB0EEC3C8EDEC8 /* Pods_proCensor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD4FECFC900F31E11C9833F6 /* Pods_proCensor.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		267F2587210810A100174A37 /* PreviewPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoVC.swift; sourceTree = "<group>"; };
 		267F2589210810C200174A37 /* PreviewPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoView.swift; sourceTree = "<group>"; };
 		26E1159B2108E4270024E6DF /* CameraVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVideoViewController.swift; sourceTree = "<group>"; };
+		26F29CC82109A1DD0072D311 /* VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC.swift; sourceTree = "<group>"; };
+		26F29CC92109A1DD0072D311 /* VC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VC.xib; sourceTree = "<group>"; };
 		AAF15436C9D29943CE77FA1D /* Pods-proCensor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proCensor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-proCensor/Pods-proCensor.debug.xcconfig"; sourceTree = "<group>"; };
 		CD4FECFC900F31E11C9833F6 /* Pods_proCensor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proCensor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -92,6 +96,8 @@
 				26645A822107EDBC0004D3F7 /* ViewController.swift */,
 				267F2587210810A100174A37 /* PreviewPhotoVC.swift */,
 				26E1159B2108E4270024E6DF /* CameraVideoViewController.swift */,
+				26F29CC82109A1DD0072D311 /* VC.swift */,
+				26F29CC92109A1DD0072D311 /* VC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -173,6 +179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26F29CCB2109A1DD0072D311 /* VC.xib in Resources */,
 				26645A772107D93A0004D3F7 /* LaunchScreen.storyboard in Resources */,
 				26645A742107D93A0004D3F7 /* Assets.xcassets in Resources */,
 			);
@@ -230,6 +237,7 @@
 				26645A6D2107D9380004D3F7 /* AppDelegate.swift in Sources */,
 				267F2588210810A100174A37 /* PreviewPhotoVC.swift in Sources */,
 				267F258A210810C200174A37 /* PreviewPhotoView.swift in Sources */,
+				26F29CCA2109A1DD0072D311 /* VC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

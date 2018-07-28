@@ -11,183 +11,159 @@ import AVFoundation
 
 class CameraVideoViewController: UIViewController {
     
-    var captureSession: AVCaptureSession?
+    var myCaptureSession: AVCaptureSession = AVCaptureSession()
+    var previewLayer:AVCaptureVideoPreviewLayer?
+    var movieOutput = AVCaptureMovieFileOutput()
     
+    var currentCamera: AVCaptureDevice?
     var frontCamera: AVCaptureDevice?
-    var rearCamera: AVCaptureDevice?
-    
+    var backCamera: AVCaptureDevice?
 
-    var currentCameraPosition: CameraPosition?
-    var frontCameraInput: AVCaptureDeviceInput?
-    var rearCameraInput: AVCaptureDeviceInput?
-    
-    
-    var previewLayer: AVCaptureVideoPreviewLayer?
-    
-    
-    var  photoOutput: AVCapturePhotoOutput?// to hold the data output of our capture session
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
-    
-    /*This function will handle the creation and configuration of a new capture session. Remember, setting up the capture session consists of 4 steps
-     * 1. Creating a capture session.
-     * 2. Obtaining and configuring the necessary capture devices
-     * 3. Creating inputs using the capture devices
-     */
-    func prepare(completionHandler: @escaping (Error?) -> Void) {
-        func createCaptureSession() {
-            self.captureSession = AVCaptureSession()
-            
-        }
-        func configureCaptureDevices() throws {
-
-            //1
-            let session = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .unspecified)
-//            guard let cameras = (session.devices.compactMap { $0 }), !cameras.isEmpty else { throw CameraControllerError.noCamerasAvailable }
-            
-            let cameras = session.devices
-            
-            //2
-            for camera in cameras {
-                if camera.position == .front {
-                    self.frontCamera = camera
-                }
-                
-                if camera.position == .back {
-                    self.rearCamera = camera
-                    
-                    try camera.lockForConfiguration()
-                    camera.focusMode = .continuousAutoFocus
-                    camera.unlockForConfiguration()
-                }
-            }
-            
-            
-        }
-        func configureDeviceInputs() throws {
-            
-            //3. This line simply ensures that captureSession exists. If not, we throw an error
-            guard let captureSession = self.captureSession else { throw CameraControllerError.captureSessionIsMissing }
-            
-            //4only allows one camera-based input per capture session at a time. Since the rear camera is traditionally the default, we attempt to create an input from it and add it to the capture session
-            if let rearCamera = self.rearCamera {
-                self.rearCameraInput = try AVCaptureDeviceInput(device: rearCamera)
-                
-                if captureSession.canAddInput(self.rearCameraInput!) { captureSession.addInput(self.rearCameraInput!) }
-                
-                self.currentCameraPosition = .rear
-            }
-                
-            //
-            //
-            //If that fails, we fall back on the front camera. If that fails as well, we throw an error
-            else if let frontCamera = self.frontCamera {
-                self.frontCameraInput = try AVCaptureDeviceInput(device: frontCamera)
-                
-                if captureSession.canAddInput(self.frontCameraInput!) { captureSession.addInput(self.frontCameraInput!) }
-                else { throw CameraControllerError.inputsAreInvalid }
-                
-                self.currentCameraPosition = .front
-            }
-                
-            else { throw CameraControllerError.noCamerasAvailable }
-        }
-        func configurePhotoOutput() throws {
-            guard let captureSession = self.captureSession else { throw CameraControllerError.captureSessionIsMissing }
-            
-            self.photoOutput = AVCapturePhotoOutput()
-            self.photoOutput!.setPreparedPhotoSettingsArray([AVCapturePhotoSettings(format: [AVVideoCodecKey : AVVideoCodecType.jpeg])], completionHandler: nil)
-            
-            if let picOutput = self.photoOutput {
-                if captureSession.canAddOutput(picOutput){ captureSession.addOutput(picOutput)}
-            }
-            //if captureSession.canAddOutput(self.photoOutput) { captureSession.addOutput(self.photoOutput) }
-            
-            captureSession.startRunning()
-//            This is a simple implementation. It just configures photoOutput, telling
-//            it to use the JPEG file format for its video codec. Then, it adds photoOutput to captureSession.
-//            Finally, it starts captureSession
-        }
-        
-        DispatchQueue(label: "prepare").async {
-            do {
-                createCaptureSession()
-                try configureCaptureDevices()
-                try configureDeviceInputs()
-                try configurePhotoOutput()
-            }
-                
-            catch {
-                DispatchQueue.main.async {
-                    completionHandler(error)
-                }
-                
-                return
-            }
-            
-            DispatchQueue.main.async {
-                completionHandler(nil)
-            }
-        }
-//  In the above code listing, we’ve created boilerplate functions for performing the 4 key steps in preparing an AVCaptureSession for photo capture. We’ve also set up an asynchronously executing block that calls the four functions, catches any errors if necessary, and then calls the completion handler. All we have left to do is implement the four functions! Let’s start with createCaptureSession
-        
-    }
-
-    enum CameraControllerError: Swift.Error {
-        case captureSessionAlreadyRunning
-        case captureSessionIsMissing
-        case inputsAreInvalid
-        case invalidOperation
-        case noCamerasAvailable
-        case unknown
-    }
-
-    public enum CameraPosition {
-        case front
-        case rear
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-}
-extension CameraVideoViewController{
-//    Now that we have the camera device ready, it is time to show what it captures on screen. Add another
-//    function to CameraController (outside of prepare), called it displayPreview.
-//    It should have the following signature
-    
-    
-    
-   // this function will be responsible for creating a capture preview and displaying it on the provided view
-    func displayPreview(onview: UIView) throws {
-        
-        
-        guard let captureSession = self.captureSession, captureSession.isRunning else { throw CameraControllerError.captureSessionIsMissing }
-        
-        self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+    func setupPreview(onview: UIView) {
+        // Configure previewLayer
+        self.previewLayer = AVCaptureVideoPreviewLayer(session: myCaptureSession)
         self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         self.previewLayer?.connection?.videoOrientation = .portrait
-        
+        self.previewLayer?.frame = self.view.frame
         if let preview = self.previewLayer{
             onview.layer.insertSublayer(preview, at: 0)
         }
-//        view.layer.insertSublayer(self.previewLayer, at: 0)
-        self.previewLayer?.frame = self.view.frame // this line
+    }
+    
+    func setupCaptureSession() -> Bool{
+        // setup the qulity
+        myCaptureSession.sessionPreset = AVCaptureSession.Preset.high
+        // setup CaptureDevice
+        if (deviceSetup() == false){ print("something with wrong with our deviceSetup");return false}
+        //input and output
+        else if (inputOutputSetup() == false){print("something with wrong with our inputOutputSetup"); return false}
         
-        //This function creates an AVCaptureVideoPreview using captureSession,
-        //sets it to have the portrait orientation, and adds it to the provided view
+        return true
+    }
+    
+    func deviceSetup()-> Bool{
         
+        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: .video, position: AVCaptureDevice.Position.unspecified)
+        let devices = deviceDiscoverySession.devices
+        
+        for device in devices{
+            if device.position == AVCaptureDevice.Position.back{
+                self.backCamera = device
+            }else if device.position == AVCaptureDevice.Position.front{
+                self.frontCamera = device
+            }
+        }
+        self.currentCamera = self.backCamera
+        return true
+    }
+    func inputOutputSetup()-> Bool{
+        do{
+            if(self.currentCamera != nil){
+                // get current camera device
+                let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
+                // add the current camera device
+                if (myCaptureSession.canAddInput(captureDeviceInput)){ myCaptureSession.addInput(captureDeviceInput)}
+                // Get Audio Device
+                let audio = AVCaptureDevice.default(for: .audio)
+                let audioInput = try AVCaptureDeviceInput(device: audio!)
+                // add audio
+                if (myCaptureSession.canAddInput(audioInput)){myCaptureSession.addInput(audioInput)}
+                
+                if (myCaptureSession.canAddOutput(self.movieOutput)){myCaptureSession.addOutput(self.movieOutput)}
+                myCaptureSession.commitConfiguration()
+            }
+            
+        }catch{print("Error setting device audio input: \(error.localizedDescription)");return false}
+        return true
+    }
+    
+    func beginCaptureSession() {
+        if !myCaptureSession.isRunning {
+            cameraQueueManager().async {
+                self.myCaptureSession.startRunning()
+            }
+        }
+    }
+    func cameraQueueManager() -> DispatchQueue {
+        return DispatchQueue.main
     }
     
     
     
     
-    
-    
-    
-}
+}// end class
+
+extension CameraVideoViewController{
+    func startRecording() {
+        if self.movieOutput.isRecording == false {
+            
+            let connection = self.movieOutput.connection(with: AVMediaType.video)
+            if (connection?.isVideoOrientationSupported)! {
+                connection?.videoOrientation = currentVideoOrientation()
+            }
+            
+            if (connection?.isVideoStabilizationSupported)! {
+                connection?.preferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.auto
+            }
+            
+            let device = self.currentCamera // AVCaptureDEviceinput
+            if (device?.isSmoothAutoFocusSupported)! {
+                do {
+                    try device?.lockForConfiguration()
+                    device?.isSmoothAutoFocusEnabled = false
+                    device?.unlockForConfiguration()
+                } catch {
+                    print("Error setting configuration: \(error)")
+                }
+                
+            }
+            
+            //EDIT2: And I forgot this
+            outputURL = tempURL()
+            movieOutput.startRecording(toOutputFileURL: outputURL, recordingDelegate: self)
+            
+        }
+        else {
+            stopRecording()
+        }
+        
+    }
+    func tempURL() -> URL? {
+        let directory = NSTemporaryDirectory() as NSString
+        
+        if directory != "" {
+            let path = directory.appendingPathComponent(NSUUID().uuidString + ".mp4")
+            return URL(fileURLWithPath: path)
+        }
+        
+        return nil
+    }
+    func stopRecording() {
+        
+        if self.movieOutput.isRecording == true {
+            self.movieOutput.stopRecording()
+        }
+    }
+
+    func currentVideoOrientation() -> AVCaptureVideoOrientation {
+        var orientation: AVCaptureVideoOrientation
+        
+        switch UIDevice.current.orientation {
+        case .portrait:
+            orientation = AVCaptureVideoOrientation.portrait
+        case .landscapeRight:
+            orientation = AVCaptureVideoOrientation.landscapeLeft
+        case .portraitUpsideDown:
+            orientation = AVCaptureVideoOrientation.portraitUpsideDown
+        default:
+            orientation = AVCaptureVideoOrientation.landscapeRight
+        }
+        
+        return orientation
+    }
+}// end extensiom

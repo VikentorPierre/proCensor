@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let window = UIWindow(frame: UIScreen.main.bounds)
 //            let mainVC = MainVC(nibName: "MainVC", bundle: nil)
             let mainVC = ViewController()
+            //let mainVC = VC(nibName: "VC", bundle: nil)
             window.rootViewController = mainVC
             window.makeKeyAndVisible()/*since we have no Main storyboard*/
             return window
